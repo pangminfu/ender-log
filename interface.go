@@ -1,7 +1,8 @@
 package logger
 
 type LoggerRepository interface {
-	Debug(string)
+	SetDebugable(bool)
+	Debugable() bool
 	Info(string)
 	Warn(string)
 	Error(string)

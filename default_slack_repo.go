@@ -12,6 +12,7 @@ import (
 type DefaultSlackRepository struct {
 	slackUrl string
 	message  string
+	debug    bool
 }
 
 type DefaultSlackPayload struct {
@@ -21,12 +22,16 @@ type DefaultSlackPayload struct {
 func NewDefaultSlackRepository(url string) LoggerRepository {
 	return &DefaultSlackRepository{
 		slackUrl: url,
+		debug:    false,
 	}
 }
 
-func (s *DefaultSlackRepository) Debug(msg string) {
-	s.message = msg
-	s.send()
+func (s *DefaultSlackRepository) SetDebugable(debug bool) {
+	s.debug = debug
+}
+
+func (s *DefaultSlackRepository) Debugable() bool {
+	return s.debug
 }
 
 func (s *DefaultSlackRepository) Info(msg string) {
