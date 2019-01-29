@@ -1,4 +1,4 @@
-package logger
+package enderlog
 
 type LoggerRepository interface {
 	SetDebugable(bool)
