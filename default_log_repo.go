@@ -3,21 +3,21 @@ package enderlog
 import "log"
 
 type DefaultLoggerRepository struct {
-	debug bool
+	debugable bool
 }
 
 func NewDefaultLoggerRepository() LoggerRepository {
 	return &DefaultLoggerRepository{
-		debug: true,
+		debugable: true,
 	}
 }
 
-func (r *DefaultLoggerRepository) SetDebugable(debug bool) {
-	r.debug = debug
+func (r *DefaultLoggerRepository) SetDebugable(debugable bool) {
+	r.debugable = debugable
 }
 
 func (r *DefaultLoggerRepository) Debugable() bool {
-	return r.debug
+	return r.debugable
 }
 
 func (r *DefaultLoggerRepository) Info(msg string) {

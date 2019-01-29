@@ -10,9 +10,9 @@ import (
 )
 
 type DefaultSlackRepository struct {
-	slackUrl string
-	message  string
-	debug    bool
+	slackUrl  string
+	message   string
+	debugable bool
 }
 
 type DefaultSlackPayload struct {
@@ -21,17 +21,17 @@ type DefaultSlackPayload struct {
 
 func NewDefaultSlackRepository(url string) LoggerRepository {
 	return &DefaultSlackRepository{
-		slackUrl: url,
-		debug:    false,
+		slackUrl:  url,
+		debugable: false,
 	}
 }
 
-func (s *DefaultSlackRepository) SetDebugable(debug bool) {
-	s.debug = debug
+func (s *DefaultSlackRepository) SetDebugable(debugable bool) {
+	s.debugable = debugable
 }
 
 func (s *DefaultSlackRepository) Debugable() bool {
-	return s.debug
+	return s.debugable
 }
 
 func (s *DefaultSlackRepository) Info(msg string) {
