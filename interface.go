@@ -11,7 +11,7 @@ type LoggerRepository interface {
 
 type LoggerService interface {
 	Add(LoggerRepository)
-	SetDebug(bool)
+	SetDebugMode(bool)
 	Debug(string)
 	Info(string)
 	Warn(string)
