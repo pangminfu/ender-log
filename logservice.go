@@ -26,7 +26,7 @@ func (s *Service) Debug(msg string) {
 }
 
 func (s *Service) Add(repo LoggerRepository) {
-	s.loggerRepo = append(s.loggerRepo, repo)
+	s.loggerRepo = append([]LoggerRepository{repo}, s.loggerRepo...)
 }
 
 func (s *Service) Info(msg string) {
