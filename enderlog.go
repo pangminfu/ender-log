@@ -7,7 +7,7 @@ type Service struct {
 	debugmode  bool
 }
 
-func NewLogService() LoggerService {
+func New() *Service {
 	defaultRepo := NewDefaultLoggerRepository()
 	s := &Service{
 		loggerRepo: nil,
