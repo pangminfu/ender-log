@@ -3,9 +3,9 @@ package logger
 import "testing"
 
 func TestLogI(t *testing.T) {
-	slack := NewSlackLogger()
+	slack := NewDefaultSlackRepository()
 	svc := NewLogService()
-	svc.add(slack)
+	svc.Add(slack)
 
-	svc.i("test")
+	svc.Info("test")
 }
