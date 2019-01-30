@@ -31,3 +31,5 @@ you can have your custom implementation of logger with ender-log. before adding 
 elog = enderlog.New()
 elog.Add(CustomLoggerRepository())
 ```
+
+Can refer to this [gist](https://gist.github.com/pangminfu/135417ef698d11734f00f29168f81430) for how to write a custom logger.
