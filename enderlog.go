@@ -8,12 +8,10 @@ type EnderLogger struct {
 }
 
 func New() *EnderLogger {
-	defaultRepo := NewDefaultLoggerRepository()
 	s := &EnderLogger{
 		loggerRepo: nil,
 		debugmode:  false,
 	}
-	s.Add(defaultRepo)
 	return s
 }
 
@@ -25,8 +23,11 @@ func (s *EnderLogger) Debug(msg string) {
 	log.Println(msg)
 }
 
+// Add will add your implementation of Logger so that enderlog can broadcast the log to your custom logger.
+// Please be mindful if your logger implementation contain log.Panicln() that will terminate excution.
+// you may need to add it at last so that your other logger implementation will work before execution being terminate
 func (s *EnderLogger) Add(repo LoggerRepository) {
-	s.loggerRepo = append([]LoggerRepository{repo}, s.loggerRepo...)
+	s.loggerRepo = append(s.loggerRepo, repo)
 }
 
 func (s *EnderLogger) Info(msg string) {
