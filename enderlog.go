@@ -2,14 +2,14 @@ package enderlog
 
 import "log"
 
-type Service struct {
+type EnderLogger struct {
 	loggerRepo []LoggerRepository
 	debugmode  bool
 }
 
-func New() *Service {
+func New() *EnderLogger {
 	defaultRepo := NewDefaultLoggerRepository()
-	s := &Service{
+	s := &EnderLogger{
 		loggerRepo: nil,
 		debugmode:  false,
 	}
@@ -17,19 +17,19 @@ func New() *Service {
 	return s
 }
 
-func (s *Service) SetDebugMode(debugmode bool) {
+func (s *EnderLogger) SetDebugMode(debugmode bool) {
 	s.debugmode = debugmode
 }
 
-func (s *Service) Debug(msg string) {
+func (s *EnderLogger) Debug(msg string) {
 	log.Println(msg)
 }
 
-func (s *Service) Add(repo LoggerRepository) {
+func (s *EnderLogger) Add(repo LoggerRepository) {
 	s.loggerRepo = append([]LoggerRepository{repo}, s.loggerRepo...)
 }
 
-func (s *Service) Info(msg string) {
+func (s *EnderLogger) Info(msg string) {
 	for _, logger := range s.loggerRepo {
 		if s.debugmode && logger.Debugable() == false {
 			continue
@@ -38,7 +38,7 @@ func (s *Service) Info(msg string) {
 	}
 }
 
-func (s *Service) Warn(msg string) {
+func (s *EnderLogger) Warn(msg string) {
 	for _, logger := range s.loggerRepo {
 		if s.debugmode && logger.Debugable() == false {
 			continue
@@ -47,7 +47,7 @@ func (s *Service) Warn(msg string) {
 	}
 }
 
-func (s *Service) Error(msg string) {
+func (s *EnderLogger) Error(msg string) {
 	for _, logger := range s.loggerRepo {
 		if s.debugmode && logger.Debugable() == false {
 			continue
@@ -56,7 +56,7 @@ func (s *Service) Error(msg string) {
 	}
 }
 
-func (s *Service) Fatal(msg string) {
+func (s *EnderLogger) Fatal(msg string) {
 	for _, logger := range s.loggerRepo {
 		if s.debugmode && logger.Debugable() == false {
 			continue
