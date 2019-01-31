@@ -15,51 +15,51 @@ func New() *EnderLogger {
 	return s
 }
 
-func (s *EnderLogger) SetDebugMode(debugmode bool) {
-	s.debugmode = debugmode
+func (el *EnderLogger) SetDebugMode(debugmode bool) {
+	el.debugmode = debugmode
 }
 
-func (s *EnderLogger) Debug(msg string) {
+func (el EnderLogger) Debug(msg string) {
 	log.Println(msg)
 }
 
 // Add will add your implementation of Logger so that enderlog can broadcast the log to your custom logger.
 // Please be mindful if your logger implementation contain log.Panicln() that will terminate excution.
 // you may need to add it at last so that your other logger implementation will work before execution being terminate
-func (s *EnderLogger) Add(repo LoggerRepository) {
-	s.loggerRepo = append(s.loggerRepo, repo)
+func (el *EnderLogger) Add(repo LoggerRepository) {
+	el.loggerRepo = append(el.loggerRepo, repo)
 }
 
-func (s *EnderLogger) Info(msg string) {
-	for _, logger := range s.loggerRepo {
-		if s.debugmode && logger.Debugable() == false {
+func (el EnderLogger) Info(msg string) {
+	for _, logger := range el.loggerRepo {
+		if el.debugmode && logger.Debugable() == false {
 			continue
 		}
 		logger.Info(msg)
 	}
 }
 
-func (s *EnderLogger) Warn(msg string) {
-	for _, logger := range s.loggerRepo {
-		if s.debugmode && logger.Debugable() == false {
+func (el EnderLogger) Warn(msg string) {
+	for _, logger := range el.loggerRepo {
+		if el.debugmode && logger.Debugable() == false {
 			continue
 		}
 		logger.Warn(msg)
 	}
 }
 
-func (s *EnderLogger) Error(msg string) {
-	for _, logger := range s.loggerRepo {
-		if s.debugmode && logger.Debugable() == false {
+func (el EnderLogger) Error(msg string) {
+	for _, logger := range el.loggerRepo {
+		if el.debugmode && logger.Debugable() == false {
 			continue
 		}
 		logger.Error(msg)
 	}
 }
 
-func (s *EnderLogger) Fatal(msg string) {
-	for _, logger := range s.loggerRepo {
-		if s.debugmode && logger.Debugable() == false {
+func (el EnderLogger) Fatal(msg string) {
+	for _, logger := range el.loggerRepo {
+		if el.debugmode && logger.Debugable() == false {
 			continue
 		}
 		logger.Fatal(msg)
