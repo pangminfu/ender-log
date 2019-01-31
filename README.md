@@ -1,6 +1,8 @@
 # ender-log
 Golang log packages that will broadcast message to list of logger(eg slack, default log) provided to implementation is being added.
 
+![](enderlog.jpg)
+
 ## Quick Start
 ```go
 package main
